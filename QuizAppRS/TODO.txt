@@ -1,0 +1,15 @@
+# Arquivo para gerência de tarefas a fazer
+#
+# Uso: <prioridade da tarefa (1-10)> - <descrição curta da tarefa>
+# Exemplo: 1 - Escolher nome para o jogo
+###########################################################################################################################
+
+1 - Escolher nome para o jogo
+1 - Mudar nome do pacote
+4 - Criar tabela administrador, estimar campos
+6 - Criar tabela jogador, estimar campos
+3 - Criar tela de trofeus
+8 - Estimar número de perguntas
+6 - Criar perguntas
+
+
