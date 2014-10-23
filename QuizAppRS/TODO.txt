@@ -16,10 +16,11 @@
 9 - Pesquisar sobre Feature IDE + Android. (Como variar os arquivos .xml das telas) 
 4 - Escolher e colocar plano de fundo
 6 - Fazer tela de login
-5 - Fazer Menu
-8 - Fazer o numero de alternativas das perguntas serem variaveis (no momento 3)
+(OK) 5 - Fazer Menu
+(OK) 8 - Fazer o numero de alternativas das perguntas serem variaveis (no momento 3) #Decidido n fixo de alternativas (4)
 1 - Criar tela de inicio (imagem inicial no começo quando o jogo esta carregando)
 7 - Criar tela de fim de jogo (tela + imagem)
-8 - Trocar radiobuttons por botoes normais
+(OK) 8 - Trocar radiobuttons por botoes normais
 7 - Criar tela aulas
 2 - Escolher fundo de tela
+5 - Verificar compatibilidade com outros emuladores/celulares
