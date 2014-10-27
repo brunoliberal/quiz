@@ -1,4 +1,4 @@
-package com.example.triviality;
+package br.ufmg.dcc.rs.quizes.activities;
 
 public class Messages {
 

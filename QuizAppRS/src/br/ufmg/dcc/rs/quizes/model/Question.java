@@ -1,4 +1,4 @@
-package com.example.triviality;
+package br.ufmg.dcc.rs.quizes.model;
 
 public class Question {
 	private int ID;
@@ -9,6 +9,7 @@ public class Question {
 	private String OPTD;
 	private String ANSWER;
 	private String CATEG;
+	private String TYPE;
 
 	public Question() {
 		ID = 0;
@@ -19,10 +20,11 @@ public class Question {
 		OPTD = "";
 		ANSWER = "";
 		CATEG = "";
+		TYPE = "";
 	}
 
 	public Question(String qUESTION, String oPTA, String oPTB, String oPTC,
-			String oPTD, String aNSWER, String cATEG) {
+			String oPTD, String aNSWER, String cATEG, String tYPE) {
 
 		QUESTION = qUESTION;
 		OPTA = oPTA;
@@ -31,6 +33,7 @@ public class Question {
 		OPTD = oPTD;
 		ANSWER = aNSWER;
 		CATEG = cATEG;
+		TYPE = tYPE;
 	}
 
 	public int getID() {
@@ -63,6 +66,14 @@ public class Question {
 
 	public String getCATEG() {
 		return CATEG;
+	}
+
+	public String getTYPE() {
+		return TYPE;
+	}
+
+	public void setTYPE(String tYPE) {
+		TYPE = tYPE;
 	}
 
 	public void setCATEG(String cATEG) {
@@ -99,10 +110,14 @@ public class Question {
 
 	@Override
 	public String toString() {
-		return "Pergunta: " + getQUESTION() + "\n" + "A: " + getOPTA() + "\n"
-				+ "B: " + getOPTB() + "\n" + "C: " + getOPTC() + "\n" + "D: "
-				+ getOPTD() + "\n" + "Resposta: " + getANSWER() + "\n"
-				+ "Categoria: " + getCATEG() + "\n";
+		return "Pergunta: " + getQUESTION() + "\n" + 
+				"A: " + getOPTA() + "\n" + 
+				"B: " + getOPTB() + "\n" + 
+				"C: " + getOPTC() + "\n" + 
+				"D: " + getOPTD() + "\n" + 
+				"Resposta: " + getANSWER() + "\n" + 
+				"Categoria: " + getCATEG() + "\n" +
+				"Tipo: " + getTYPE() + "\n";
 	}
 
 }

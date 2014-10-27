@@ -1,4 +1,5 @@
-package com.example.triviality;
+package br.ufmg.dcc.rs.quizes.activities;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;

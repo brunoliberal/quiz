@@ -6,7 +6,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.triviality.MenuActivity" >
+    android:background="@drawable/menu_background"
+    tools:context="br.ufmg.dcc.rs.quizes.activities.MenuActivity" >
 
     <TextView
         android:id="@+id/app_name"

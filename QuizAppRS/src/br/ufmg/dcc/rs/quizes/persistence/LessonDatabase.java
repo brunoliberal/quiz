@@ -1,4 +1,4 @@
-package com.example.triviality;
+package br.ufmg.dcc.rs.quizes.persistence;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,6 +7,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
+
+import br.ufmg.dcc.rs.quizes.model.Question;
 
 public class LessonDatabase {
 
@@ -43,11 +45,7 @@ public class LessonDatabase {
 	
 	public List<Question> getAllQuestions() {
 		List<Question> questions = new ArrayList<Question>();
-		questions.add(new Question("Questao 1", "Alternativa a", "Alternativa b", "Alternativa c", "Alternativa d", "Alternativa a", "Categoria"));
-		questions.add(new Question("Questao 2", "Alternativa a", "Alternativa b", "Alternativa c", "Alternativa d", "Alternativa b", "Categoria"));
-		questions.add(new Question("Questao 3", "Alternativa a", "Alternativa b", "Alternativa c", "Alternativa d", "Alternativa c", "Categoria"));
-		questions.add(new Question("Questao 4", "Alternativa a", "Alternativa b", "Alternativa c", "Alternativa d", "Alternativa d", "Categoria"));
-		questions.add(new Question("Questao 5", "Alternativa a", "Alternativa b", "Alternativa c", "Alternativa d", "Alternativa a", "Categoria"));
+		
 		return questions;
 	}
 	

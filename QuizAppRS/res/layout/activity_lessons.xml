@@ -1,16 +1,64 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lessonact"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/library320x480"
+    android:gravity="start"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.triviality.LessonsActivity" >
+    tools:context="br.ufmg.dcc.rs.quizes.activities.LessonsActivity" >
 
-    <TextView
+    <ImageButton
+        android:id="@+id/imageButton4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_alignTop="@+id/imageButton3"
+        android:layout_toLeftOf="@+id/imageButton3"
+        android:adjustViewBounds="true"
+        android:maxHeight="70dp"
+        android:maxWidth="70dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/book02" />
 
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/imageButton1"
+        android:layout_toLeftOf="@+id/imageButton4"
+        android:adjustViewBounds="true"
+        android:maxHeight="70dp"
+        android:maxWidth="70dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/book06" />
+
+    <ImageButton
+        android:id="@+id/imageButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/imageButton2"
+        android:adjustViewBounds="true"
+        android:cropToPadding="false"
+        android:maxHeight="70dp"
+        android:maxWidth="70dp"
+        android:onClick="lessonOne"
+        android:scaleType="fitCenter"
+        android:src="@drawable/book05" />
+
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/imageButton2"
+        android:adjustViewBounds="true"
+        android:maxHeight="70dp"
+        android:maxWidth="70dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/book01" />
+    
 </RelativeLayout>

@@ -1,7 +1,10 @@
-package com.example.triviality;
+package br.ufmg.dcc.rs.quizes.activities;
 import java.util.Collections;
 import java.util.List;
 import java.util.zip.Inflater;
+
+import br.ufmg.dcc.rs.quizes.model.Question;
+import br.ufmg.dcc.rs.quizes.persistence.DbHelper;
 
 import android.os.Bundle;
 import android.app.Activity;

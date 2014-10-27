@@ -1,22 +1,41 @@
-package com.example.triviality;
+package br.ufmg.dcc.rs.quizes.activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
-public class LessonsActivity extends Activity {
+public class MenuActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_lessons);
+		setContentView(R.layout.activity_menu);
 	}
 
+	public void acessarAulas(View view) {
+		startActivity(new Intent(this, LessonsActivity.class));
+	}
+	
+	public void acessarTreinos(View view) {
+		startActivity(new Intent(this, TrainsActivity.class));
+	}
+	
+	public void acessarTorneios(View view) {
+		//startActivity(new Intent(this, TorneiosActivity.class));
+	}
+	
+	public void acessarTrofeus(View view) {
+		//startActivity(new Intent(this, TrofeusActivity.class));
+	}
+
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.lessons, menu);
+		getMenuInflater().inflate(R.menu.menu, menu);
 		return true;
 	}
 
