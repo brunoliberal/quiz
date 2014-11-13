@@ -3,14 +3,15 @@ package br.ufmg.dcc.rs.quizes.persistence;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.ufmg.dcc.rs.quizes.activities.Messages;
-import br.ufmg.dcc.rs.quizes.model.Question;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import br.ufmg.dcc.rs.quizes.activities.Messages;
+import br.ufmg.dcc.rs.quizes.model.Profile;
+import br.ufmg.dcc.rs.quizes.model.Question;
 
 public class DbHelper extends SQLiteOpenHelper {
 	private static final int DATABASE_VERSION = 1;
@@ -28,6 +29,14 @@ public class DbHelper extends SQLiteOpenHelper {
 	private static final String KEY_OPTB = "optb"; // option b
 	private static final String KEY_OPTC = "optc"; // option c
 	private static final String KEY_OPTD = "optd"; // option d
+	
+
+	private static final String TABLE_PROFILE = "profile";
+	private static final String KEY_PROFILE_ID = "id";
+	private static final String KEY_NAME = "name"; // option b
+	private static final String KEY_POINTS = "points"; // option c
+	private static final String KEY_MONEY = "money"; // option d
+	
 	private SQLiteDatabase dbase;
 
 	public DbHelper(Context context) {
@@ -58,6 +67,13 @@ public class DbHelper extends SQLiteOpenHelper {
 					+ KEY_OPTB + " TEXT, " + KEY_OPTC + " TEXT, " + KEY_OPTD
 					+ " TEXT)";
 			db.execSQL(sql);
+			
+			// Tabela de Profile
+			sql = "CREATE TABLE IF NOT EXISTS " + TABLE_PROFILE + " ( "
+					+ KEY_PROFILE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+					+ KEY_NAME + " TEXT, " + KEY_POINTS + " INTEGER, " + KEY_MONEY
+					+ " INTEGER)";
+			db.execSQL(sql);
 		} catch (Exception e) {
 			Log.d("ERROR", Messages.ERROR_DB_CREATE_TABLES);
 		}
@@ -67,6 +83,7 @@ public class DbHelper extends SQLiteOpenHelper {
 	public void onUpgrade(SQLiteDatabase db, int oldV, int newV) {
 		// Drop older table if existed
 		db.execSQL("DROP TABLE IF EXISTS " + TABLE_QUEST);
+		db.execSQL("DROP TABLE IF EXISTS " + TABLE_PROFILE);
 		// Create tables again
 		onCreate(db);
 	}
@@ -85,6 +102,47 @@ public class DbHelper extends SQLiteOpenHelper {
 		values.put(KEY_OPTD, quest.getOPTD());
 		// Inserting Row
 		dbase.insert(TABLE_QUEST, null, values);
+	}
+	
+	// Adding new question
+	private void addProfile(Profile profile) {
+		// SQLiteDatabase db = this.getWritableDatabase();
+		ContentValues values = new ContentValues();
+		values.put(KEY_POINTS, profile.getPoints());
+		values.put(KEY_MONEY, profile.getMoney());
+		values.put(KEY_NAME, profile.getName());
+		// Inserting Row
+		dbase.insert(TABLE_PROFILE, null, values);
+	}
+	
+	// Adding new question
+	public void updateProfile(Profile profile) {
+		// SQLiteDatabase db = this.getWritableDatabase();
+		ContentValues values = new ContentValues();
+		values.put(KEY_POINTS, profile.getPoints());
+		values.put(KEY_MONEY, profile.getMoney());
+		values.put(KEY_NAME, profile.getName());
+		// Inserting Row
+		String args[] = null;
+		args[0] =  profile.getId().toString();
+		dbase.update(TABLE_PROFILE, values, KEY_PROFILE_ID + " = ?", args);
+	}
+	
+	public Profile getProfile() {
+		Profile profile = new Profile();
+		// Select All Query
+		String selectQuery = "SELECT * FROM " + TABLE_PROFILE;
+		dbase = this.getReadableDatabase();
+		Cursor cursor = dbase.rawQuery(selectQuery, null);
+		try {
+			if (cursor.moveToFirst()) {
+				profile = setProfile(cursor);
+			}
+		} catch (IllegalArgumentException e) {
+			Log.d("ERROR", Messages.ERROR_DB_SELECT);
+		}
+		// return quest list
+		return profile;
 	}
 
 	public List<Question> getAllQuestions() {
@@ -177,13 +235,17 @@ public class DbHelper extends SQLiteOpenHelper {
 				.getColumnIndexOrThrow(KEY_OPTD)));
 		return quest;
 	}
-
-	/*private int rowcount() {
-		int row = 0;
-		String selectQuery = "SELECT  * FROM " + TABLE_QUEST;
-		SQLiteDatabase db = this.getWritableDatabase();
-		Cursor cursor = db.rawQuery(selectQuery, null);
-		row = cursor.getCount();
-		return row;
-	}*/
+	
+	private Profile setProfile(Cursor cursor){
+		Profile profile = new Profile();
+		profile.setId(cursor.getInt(cursor
+				.getColumnIndexOrThrow(KEY_PROFILE_ID)));
+		profile.setPoints(cursor.getInt(cursor
+				.getColumnIndexOrThrow(KEY_POINTS)));
+		profile.setMoney(cursor.getInt(cursor
+				.getColumnIndexOrThrow(KEY_MONEY)));
+		profile.setName(cursor.getString(cursor
+				.getColumnIndexOrThrow(KEY_NAME)));
+		return profile;
+	}
 }

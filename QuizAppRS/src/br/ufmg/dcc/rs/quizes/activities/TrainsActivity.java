@@ -3,9 +3,6 @@ package br.ufmg.dcc.rs.quizes.activities;
 import java.util.Collections;
 import java.util.List;
 
-import br.ufmg.dcc.rs.quizes.model.Question;
-import br.ufmg.dcc.rs.quizes.persistence.DbHelper;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -16,8 +13,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
+import br.ufmg.dcc.rs.quizes.model.Profile;
+import br.ufmg.dcc.rs.quizes.model.Question;
+import br.ufmg.dcc.rs.quizes.persistence.DbHelper;
 
 public class TrainsActivity extends Activity {
 
@@ -28,13 +27,15 @@ public class TrainsActivity extends Activity {
 	RadioButton rda, rdb, rdc, rdd;
 	Button buttonA, buttonB, buttonC, buttonD;
 	Button butNext;
+	Profile profile;
+	DbHelper db;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_trains);
 		//inicializar base
-		DbHelper db=new DbHelper(this);
+		db=new DbHelper(this);
 		//gerar questoes
 		trainQuesList=db.getQuestionsByType("Tipo");
 		Collections.shuffle(trainQuesList);
@@ -74,7 +75,7 @@ public class TrainsActivity extends Activity {
 		});*/
 		
 		
-		
+		profile = db.getProfile();
 	}
 	
 	@Override
@@ -103,6 +104,18 @@ public class TrainsActivity extends Activity {
 		buttonB.setText(currentQ.getOPTB());
 		buttonC.setText(currentQ.getOPTC());
 		buttonD.setText(currentQ.getOPTD());
+		
+		if(currentQ.getCATEG() == "X"){
+			buttonC.setVisibility(1);
+			buttonD.setVisibility(1);
+			buttonC.setEnabled(false);
+			buttonD.setEnabled(false);
+		}else{
+			buttonC.setVisibility(0);
+			buttonD.setVisibility(0);
+			buttonC.setEnabled(true);
+			buttonD.setEnabled(true);
+		}
 		qid++;
 	}
 	
@@ -114,6 +127,8 @@ public class TrainsActivity extends Activity {
 			answer.setBackgroundColor(Color.GREEN);
 		else
 			answer.setBackgroundColor(Color.RED);
+		
+		db.updateProfile(profile);
 	}
 	
 	public void nextQuestion(View view){
